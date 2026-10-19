@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EcoPulse | Smart Sustainability Tracker{% endblock %}</title>
+    <meta name="description" content="EcoPulse is a modern, high-precision carbon footprint analytics tracker and sustainability dashboard. Monitor transportation, home energy, waste, and lifestyle emissions with real-time benchmarks.">
+    
+    <!-- Design & Typography -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'><path d='M12 2L9.5 7.5L4 8.5L8 12.5L7 18L12 15L17 18L16 12.5L20 8.5L14.5 7.5L12 2Z'/></svg>">
+</head>
+<body>
+    <header class="app-header">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="brand-logo" id="brand-link" aria-label="EcoPulse Home">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                    </svg>
+                </div>
+                <div class="brand-name">
+                    <span class="brand-eco">ECO</span><span class="brand-pulse">PULSE</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="main-nav">
+                <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" id="nav-dashboard">DASHBOARD</a>
+                <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" id="nav-about">ABOUT</a>
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle visual theme" title="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="app-main" id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Global Notification Toast -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h3 id="modal-title">Confirm Action</h3>
+            <p id="modal-message">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+                <button type="button" class="btn btn-danger" id="modal-confirm-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Breakdown Modal -->
+    <div id="info-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Calculation Methodology</h3>
+                <button type="button" class="close-btn" id="info-modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Transportation:</strong> Uses EPA baseline factors (8.887 kg CO2 per gallon gasoline, 0.14 kg/mile public transit, 450 kg/flight). Regular vehicle maintenance factors a 4% efficiency saving.</p>
+                <p><strong>Home Energy:</strong> Based on weighted average grid intensity (0.385 kg CO2e/kWh) with credits for renewable energy tariffs, plus heating fuels (5.3 kg/unit).</p>
+                <p><strong>Waste:</strong> Solid municipal waste baseline scaled by bag volume, adjusted for recycling habits (up to 45% reduction) and organic composting (20% reduction).</p>
+                <p><strong>Other:</strong> Dietary and consumer lifestyle footprint estimates based on peer-reviewed environmental life-cycle analyses.</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-primary" id="info-modal-ok">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

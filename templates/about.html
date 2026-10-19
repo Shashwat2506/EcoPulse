@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}About & Methodology | EcoPulse{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-hero">
+        <div class="about-tag">SYSTEM ARCHITECTURE & METHODOLOGY</div>
+        <h1 class="about-title">EcoPulse: Smart Sustainability Tracker</h1>
+        <p class="about-subtitle">An end-to-end, production-grade carbon footprint analytics platform and CI/CD demonstration project built with Flask, Docker, Jenkins, and Kubernetes.</p>
+    </div>
+
+    <div class="about-grid">
+        <!-- Card 1: Core Mission & Objectives -->
+        <div class="card about-card">
+            <h2 class="card-title">1. PROJECT PURPOSE & SCOPE</h2>
+            <p>EcoPulse is an intuitive personal carbon accounting system designed to eliminate ambiguous greenhouse gas estimates. By capturing user activity data across four primary categories—Transportation, Home Energy, Waste, and Lifestyle—EcoPulse computes annualized mass balances in kilograms of CO<sub>2</sub>-equivalent (kg CO<sub>2</sub>e) and converts them into standardized metric tonnes.</p>
+            <div class="spec-highlight">
+                <span class="spec-label">Single Source of Truth:</span>
+                <span class="spec-text">All dashboard charts, category breakdown percentages, and historical logs are dynamically derived from atomic activity records stored in persistent SQLite storage.</span>
+            </div>
+        </div>
+
+        <!-- Card 2: Scientific Emission Factors & Calculation Logic -->
+        <div class="card about-card">
+            <h2 class="card-title">2. DOCUMENTED EMISSION FACTORS</h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Parameter</th>
+                            <th>Factor / Benchmark</th>
+                            <th>Source / Reference</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transportation</td>
+                            <td>Motor Gasoline</td>
+                            <td>8.887 kg CO<sub>2</sub> / gallon</td>
+                            <td>EPA Greenhouse Gas Inventory</td>
+                        </tr>
+                        <tr>
+                            <td>Transportation</td>
+                            <td>Public Transit</td>
+                            <td>0.140 kg CO<sub>2</sub>e / passenger-mile</td>
+                            <td>National Transit Database (NTD)</td>
+                        </tr>
+                        <tr>
+                            <td>Transportation</td>
+                            <td>Commercial Flight</td>
+                            <td>450 kg CO<sub>2</sub>e / average trip</td>
+                            <td>ICAO Carbon Emissions Calculator</td>
+                        </tr>
+                        <tr>
+                            <td>Transportation</td>
+                            <td>Vehicle Maintenance</td>
+                            <td>0.96 multiplier (~4% savings)</td>
+                            <td>US Dept of Energy Fuel Economy Guide</td>
+                        </tr>
+                        <tr>
+                            <td>Home Energy</td>
+                            <td>Grid Electricity</td>
+                            <td>0.385 kg CO<sub>2</sub>e / kWh</td>
+                            <td>eGRID US Average Emission Rates</td>
+                        </tr>
+                        <tr>
+                            <td>Home Energy</td>
+                            <td>Heating Fuel</td>
+                            <td>5.300 kg CO<sub>2</sub>e / therm</td>
+                            <td>EPA AP-42 Emission Standards</td>
+                        </tr>
+                        <tr>
+                            <td>Waste</td>
+                            <td>Municipal Landfill</td>
+                            <td>0.500 kg CO<sub>2</sub>e / kg waste</td>
+                            <td>EPA WARM Model</td>
+                        </tr>
+                        <tr>
+                            <td>Benchmarks</td>
+                            <td>Global Baseline</td>
+                            <td>4.00 metric tonnes / year</td>
+                            <td>World Bank / IEA Per-Capita Emissions</td>
+                        </tr>
+                        <tr>
+                            <td>Benchmarks</td>
+                            <td>US Baseline</td>
+                            <td>16.00 metric tonnes / year</td>
+                            <td>EPA National Greenhouse Gas Summary</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Card 3: Cloud & DevOps Pipeline -->
+        <div class="card about-card">
+            <h2 class="card-title">3. CI/CD & DEVOPS ARCHITECTURE</h2>
+            <p>EcoPulse is engineered for university Cloud Computing &amp; DevOps evaluation (CCA 2). It satisfies multi-tier containerization and orchestrated deployment workflows:</p>
+            <div class="workflow-steps">
+                <div class="step-card">
+                    <span class="step-num">01</span>
+                    <div class="step-info">
+                        <h4>Source Control</h4>
+                        <p>Git feature branches with automated commit tracking on GitHub.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">02</span>
+                    <div class="step-info">
+                        <h4>Automated Tests</h4>
+                        <p>Jenkins triggers <code>pytest</code> executing unit tests for calculation modules, endpoints, and input sanitization.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">03</span>
+                    <div class="step-info">
+                        <h4>Dockerization</h4>
+                        <p>Multi-stage or slim Python build, non-root user execution, packaged with production WSGI Gunicorn.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">04</span>
+                    <div class="step-info">
+                        <h4>Registry Push</h4>
+                        <p>Images tagged with semantic build numbers and pushed securely to Docker Hub registry.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">05</span>
+                    <div class="step-info">
+                        <h4>Kubernetes on Minikube</h4>
+                        <p>Declarative deployment with rolling update strategy, container resource limits, and <code>/healthz</code> liveness/readiness probes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Health Check & Reliability -->
+        <div class="card about-card">
+            <h2 class="card-title">4. APPLICATION HEALTH & ENDPOINTS</h2>
+            <p>The system provides both user-facing visual interfaces and machine-readable REST endpoints for automated infrastructure monitoring:</p>
+            <ul class="endpoint-list">
+                <li><code>GET /</code> - Interactive carbon tracking dashboard and 3D Earth view.</li>
+                <li><code>GET /healthz</code> - Liveness/Readiness probe returning HTTP 200 with database health status.</li>
+                <li><code>GET /api/entries</code> - List all stored user assessment entries.</li>
+                <li><code>POST /api/entries</code> - Create and persist a new assessment log.</li>
+                <li><code>PUT /api/entries/&lt;id&gt;</code> - Recalculate and update an existing log.</li>
+                <li><code>DELETE /api/entries/&lt;id&gt;</code> - Delete an assessment log.</li>
+                <li><code>GET /api/history</code> - Chronological dataset for historical trend visualization.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

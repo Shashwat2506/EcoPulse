@@ -1,0 +1,36 @@
+# Python Bytecode and Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+venv/
+env/
+.env
+.venv/
+ENV/
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Application SQLite Database
+*.db
+*.sqlite3
+ecopulse.db
+
+# IDE and OS Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Build Artifacts
+build/
+dist/
+*.egg-info/

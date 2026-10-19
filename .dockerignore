@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Python caches
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+
+# Tests
+tests/
+pytest.ini
+
+# Environments
+venv/
+env/
+.env
+
+# Local database files
+*.db
+*.sqlite3
+ecopulse.db
+
+# Documentation & IDE
+.vscode
+.idea
+*.md
+Jenkinsfile
