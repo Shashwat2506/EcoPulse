@@ -285,7 +285,7 @@ Navigate to **Manage Jenkins > Credentials > System > Global credentials**:
 2. Under **Pipeline**:
    - Definition: `Pipeline script from SCM`
    - SCM: `Git`
-   - Repository URL: `https://github.com/your-username/EcoPulse.git`
+   - Repository URL: `https://github.com/Shashwat2506/EcoPulse.git`
    - Branches to build: `*/main`
    - Script Path: `Jenkinsfile`
 3. Click **Save** and trigger **Build with Parameters**.
