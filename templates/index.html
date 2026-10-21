@@ -4,17 +4,18 @@
 
 {% block content %}
 <div class="dashboard-grid">
-    <!-- COLUMN 1 & 2 TOP: Earth View, Breakdown, Carbon Footprint -->
+    <!-- COLUMN 1 & 2 TOP: EARTH VIEW · ECOPULSE V2, Breakdown, Carbon Footprint -->
     <div class="left-section">
         <div class="top-row-grid">
-            <!-- EARTH VIEW CARD -->
-            <section class="card earth-card" aria-label="Earth View">
+            <!-- EARTH VIEW · ECOPULSE V2 CARD -->
+            <section class="card earth-card" aria-label="EARTH VIEW · ECOPULSE V2">
                 <div class="card-header">
-                    <h2 class="card-title">EARTH VIEW</h2>
+                    <h2 class="card-title">EARTH VIEW · ECOPULSE V2</h2>
                     <span class="live-indicator"><span class="pulse-dot"></span> LIVE SIM</span>
                 </div>
                 <div class="earth-canvas-container" id="earth-container">
-                    <canvas id="earthCanvas" width="480" height="420" aria-label="Interactive 3D Sustainability Globe"></canvas>
+                    <canvas id="earthCanvas" width="480" height="420"
+                        aria-label="Interactive 3D Sustainability Globe"></canvas>
                     <div class="earth-controls-hint">Drag to rotate &bull; Auto-orbiting</div>
                 </div>
             </section>
@@ -26,73 +27,92 @@
                     <div class="card-header">
                         <div class="title-with-info">
                             <h2 class="card-title">BREAKDOWN</h2>
-                            <button type="button" class="info-trigger-btn" id="info-trigger" aria-label="Calculation details" title="View calculation methodology">
-                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                            <button type="button" class="info-trigger-btn" id="info-trigger"
+                                aria-label="Calculation details" title="View calculation methodology">
+                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="12" y1="16" x2="12" y2="12"></line>
                                     <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                 </svg>
                             </button>
                         </div>
-                        <span class="card-subvalue" id="breakdown-total-kg">{{ active_entry.calculations.total_kg | round(0) }} kg CO2e</span>
+                        <span class="card-subvalue" id="breakdown-total-kg">{{ active_entry.calculations.total_kg |
+                            round(0) }} kg CO2e</span>
                     </div>
 
                     <div class="breakdown-list">
                         <!-- Transportation -->
                         <div class="breakdown-item" data-category="transportation">
                             <div class="item-icon-wrapper" title="Transportation">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3m14 0a2 2 0 1 1-4 0m-8 0a2 2 0 1 1-4 0"/>
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3m14 0a2 2 0 1 1-4 0m-8 0a2 2 0 1 1-4 0" />
                                 </svg>
                             </div>
                             <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="bar-transportation" style="width: {{ active_entry.calculations.breakdown.transportation.percentage }}%;"></div>
+                                <div class="progress-bar-fill" id="bar-transportation"
+                                    style="width: {{ active_entry.calculations.breakdown.transportation.percentage }}%;">
+                                </div>
                             </div>
-                            <span class="progress-pct" id="pct-transportation">{{ active_entry.calculations.breakdown.transportation.percentage }}%</span>
+                            <span class="progress-pct" id="pct-transportation">{{
+                                active_entry.calculations.breakdown.transportation.percentage }}%</span>
                         </div>
 
                         <!-- Home Energy -->
                         <div class="breakdown-item" data-category="energy">
                             <div class="item-icon-wrapper" title="Home Energy">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
                             </div>
                             <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="bar-energy" style="width: {{ active_entry.calculations.breakdown.energy.percentage }}%;"></div>
+                                <div class="progress-bar-fill" id="bar-energy"
+                                    style="width: {{ active_entry.calculations.breakdown.energy.percentage }}%;"></div>
                             </div>
-                            <span class="progress-pct" id="pct-energy">{{ active_entry.calculations.breakdown.energy.percentage }}%</span>
+                            <span class="progress-pct" id="pct-energy">{{
+                                active_entry.calculations.breakdown.energy.percentage }}%</span>
                         </div>
 
                         <!-- Waste -->
                         <div class="breakdown-item" data-category="waste">
                             <div class="item-icon-wrapper" title="Waste Management">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
                                     <line x1="10" y1="11" x2="10" y2="17"></line>
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg>
                             </div>
                             <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="bar-waste" style="width: {{ active_entry.calculations.breakdown.waste.percentage }}%;"></div>
+                                <div class="progress-bar-fill" id="bar-waste"
+                                    style="width: {{ active_entry.calculations.breakdown.waste.percentage }}%;"></div>
                             </div>
-                            <span class="progress-pct" id="pct-waste">{{ active_entry.calculations.breakdown.waste.percentage }}%</span>
+                            <span class="progress-pct" id="pct-waste">{{
+                                active_entry.calculations.breakdown.waste.percentage }}%</span>
                         </div>
 
                         <!-- Other -->
                         <div class="breakdown-item" data-category="other">
                             <div class="item-icon-wrapper" title="Lifestyle & Other">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <circle cx="12" cy="12" r="1"></circle>
                                     <circle cx="19" cy="12" r="1"></circle>
                                     <circle cx="5" cy="12" r="1"></circle>
                                 </svg>
                             </div>
                             <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="bar-other" style="width: {{ active_entry.calculations.breakdown.other.percentage }}%;"></div>
+                                <div class="progress-bar-fill" id="bar-other"
+                                    style="width: {{ active_entry.calculations.breakdown.other.percentage }}%;"></div>
                             </div>
-                            <span class="progress-pct" id="pct-other">{{ active_entry.calculations.breakdown.other.percentage }}%</span>
+                            <span class="progress-pct" id="pct-other">{{
+                                active_entry.calculations.breakdown.other.percentage }}%</span>
                         </div>
                     </div>
                 </section>
@@ -101,29 +121,33 @@
                 <section class="card footprint-card" aria-label="Estimated Carbon Footprint">
                     <div class="card-header">
                         <h2 class="card-title">CARBON FOOTPRINT</h2>
-                        <span class="benchmark-pill" id="benchmark-badge" title="Compared to global baseline of 4.0 tonnes">
+                        <span class="benchmark-pill" id="benchmark-badge"
+                            title="Compared to global baseline of 4.0 tonnes">
                             {% if active_entry.calculations.benchmarks.vs_global_diff_pct >= 0 %}
-                                +{{ active_entry.calculations.benchmarks.vs_global_diff_pct }}% vs Global
+                            +{{ active_entry.calculations.benchmarks.vs_global_diff_pct }}% vs Global
                             {% else %}
-                                {{ active_entry.calculations.benchmarks.vs_global_diff_pct }}% vs Global
+                            {{ active_entry.calculations.benchmarks.vs_global_diff_pct }}% vs Global
                             {% endif %}
                         </span>
                     </div>
 
                     <div class="footprint-display">
-                        <div class="footprint-value" id="display-footprint-tonnes">{{ active_entry.calculations.primary_display_tonnes }}</div>
+                        <div class="footprint-value" id="display-footprint-tonnes">{{
+                            active_entry.calculations.primary_display_tonnes }}</div>
                         <div class="footprint-unit">metric tons per year</div>
                     </div>
 
                     <div class="footprint-secondary-stats">
                         <div class="sec-stat">
                             <span class="stat-lbl">Weekly:</span>
-                            <span class="stat-val" id="stat-weekly-val">{{ active_entry.calculations.weekly_kg | round(1) }} kg</span>
+                            <span class="stat-val" id="stat-weekly-val">{{ active_entry.calculations.weekly_kg |
+                                round(1) }} kg</span>
                         </div>
                         <div class="sec-divider"></div>
                         <div class="sec-stat">
                             <span class="stat-lbl">Monthly:</span>
-                            <span class="stat-val" id="stat-monthly-val">{{ active_entry.calculations.monthly_tonnes | round(2) }} t</span>
+                            <span class="stat-val" id="stat-monthly-val">{{ active_entry.calculations.monthly_tonnes |
+                                round(2) }} t</span>
                         </div>
                         <div class="sec-divider"></div>
                         <div class="sec-stat">
@@ -149,11 +173,14 @@
             </div>
 
             <div class="history-chart-wrapper" id="history-chart-wrapper">
-                <canvas id="historyChart" width="840" height="200" aria-label="Historical Carbon Footprint Line Chart"></canvas>
-                <div id="history-empty-state" class="history-empty" style="{% if entries|length > 0 %}display: none;{% endif %}">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 3v18h18"/>
-                        <path d="m19 9-5 5-4-4-3 3"/>
+                <canvas id="historyChart" width="840" height="200"
+                    aria-label="Historical Carbon Footprint Line Chart"></canvas>
+                <div id="history-empty-state" class="history-empty"
+                    style="{% if entries|length > 0 %}display: none;{% endif %}">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M3 3v18h18" />
+                        <path d="m19 9-5 5-4-4-3 3" />
                     </svg>
                     <p>No historical records yet. Click <strong>Save Changes</strong> to log your first assessment!</p>
                 </div>
@@ -180,8 +207,10 @@
                         <button type="button" class="accordion-header" aria-expanded="true">
                             <div class="acc-title-group">
                                 <div class="acc-icon green-glow">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3m14 0a2 2 0 1 1-4 0m-8 0a2 2 0 1 1-4 0"/>
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3m14 0a2 2 0 1 1-4 0m-8 0a2 2 0 1 1-4 0" />
                                     </svg>
                                 </div>
                                 <div class="acc-text">
@@ -196,17 +225,22 @@
                             <div class="input-row-2col">
                                 <div class="form-group">
                                     <label for="vehicle_miles_per_week">Miles/Week</label>
-                                    <input type="number" id="vehicle_miles_per_week" name="vehicle_miles_per_week" min="0" max="5000" step="1" value="{{ active_entry.inputs.vehicle_miles_per_week | default(200, true) }}" required>
+                                    <input type="number" id="vehicle_miles_per_week" name="vehicle_miles_per_week"
+                                        min="0" max="5000" step="1"
+                                        value="{{ active_entry.inputs.vehicle_miles_per_week | default(200, true) }}"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label for="vehicle_mpg">Miles/Gallon</label>
-                                    <input type="number" id="vehicle_mpg" name="vehicle_mpg" min="1" max="150" step="1" value="{{ active_entry.inputs.vehicle_mpg | default(30, true) }}" required>
+                                    <input type="number" id="vehicle_mpg" name="vehicle_mpg" min="1" max="150" step="1"
+                                        value="{{ active_entry.inputs.vehicle_mpg | default(30, true) }}" required>
                                 </div>
                             </div>
 
                             <div class="checkbox-group">
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" id="vehicle_maintenance" name="vehicle_maintenance" {% if active_entry.inputs.vehicle_maintenance %}checked{% endif %}>
+                                    <input type="checkbox" id="vehicle_maintenance" name="vehicle_maintenance" {% if
+                                        active_entry.inputs.vehicle_maintenance %}checked{% endif %}>
                                     <span class="checkmark"></span>
                                     <span class="checkbox-label">I regularly maintain my vehicles.</span>
                                 </label>
@@ -216,12 +250,15 @@
                                 <div class="form-group">
                                     <div class="input-subtitle">Public Transportation</div>
                                     <label for="transit_miles_per_week">Miles/Week</label>
-                                    <input type="number" id="transit_miles_per_week" name="transit_miles_per_week" min="0" max="5000" step="1" value="{{ active_entry.inputs.transit_miles_per_week | default(50, true) }}">
+                                    <input type="number" id="transit_miles_per_week" name="transit_miles_per_week"
+                                        min="0" max="5000" step="1"
+                                        value="{{ active_entry.inputs.transit_miles_per_week | default(50, true) }}">
                                 </div>
                                 <div class="form-group">
                                     <div class="input-subtitle">Airline Flights</div>
                                     <label for="flights_per_year">Flights/Year</label>
-                                    <input type="number" id="flights_per_year" name="flights_per_year" min="0" max="200" step="1" value="{{ active_entry.inputs.flights_per_year | default(2, true) }}">
+                                    <input type="number" id="flights_per_year" name="flights_per_year" min="0" max="200"
+                                        step="1" value="{{ active_entry.inputs.flights_per_year | default(2, true) }}">
                                 </div>
                             </div>
 
@@ -236,7 +273,8 @@
                         <button type="button" class="accordion-header" aria-expanded="false">
                             <div class="acc-title-group">
                                 <div class="acc-icon">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                        stroke-width="2">
                                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                     </svg>
                                 </div>
@@ -251,16 +289,21 @@
                             <div class="input-row-2col">
                                 <div class="form-group">
                                     <label for="electricity_kwh_per_month">Electricity (kWh/mo)</label>
-                                    <input type="number" id="electricity_kwh_per_month" name="electricity_kwh_per_month" min="0" max="20000" step="10" value="{{ active_entry.inputs.electricity_kwh_per_month | default(450, true) }}">
+                                    <input type="number" id="electricity_kwh_per_month" name="electricity_kwh_per_month"
+                                        min="0" max="20000" step="10"
+                                        value="{{ active_entry.inputs.electricity_kwh_per_month | default(450, true) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="clean_energy_pct">Clean Energy (%)</label>
-                                    <input type="number" id="clean_energy_pct" name="clean_energy_pct" min="0" max="100" step="5" value="{{ active_entry.inputs.clean_energy_pct | default(0, true) }}">
+                                    <input type="number" id="clean_energy_pct" name="clean_energy_pct" min="0" max="100"
+                                        step="5" value="{{ active_entry.inputs.clean_energy_pct | default(0, true) }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="heating_units_per_month">Heating/Gas (Therms or Units/mo)</label>
-                                <input type="number" id="heating_units_per_month" name="heating_units_per_month" min="0" max="1000" step="5" value="{{ active_entry.inputs.heating_units_per_month | default(30, true) }}">
+                                <input type="number" id="heating_units_per_month" name="heating_units_per_month" min="0"
+                                    max="1000" step="5"
+                                    value="{{ active_entry.inputs.heating_units_per_month | default(30, true) }}">
                             </div>
                             <div class="action-btn-row">
                                 <button type="submit" class="btn btn-save">Save Changes</button>
@@ -273,9 +316,12 @@
                         <button type="button" class="accordion-header" aria-expanded="false">
                             <div class="acc-title-group">
                                 <div class="acc-icon">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                        stroke-width="2">
                                         <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div class="acc-text">
@@ -288,20 +334,27 @@
                         <div class="accordion-content">
                             <div class="form-group">
                                 <label for="waste_bags_per_week">Bags of Trash / Week</label>
-                                <input type="number" id="waste_bags_per_week" name="waste_bags_per_week" min="0" max="50" step="0.5" value="{{ active_entry.inputs.waste_bags_per_week | default(2.0, true) }}">
+                                <input type="number" id="waste_bags_per_week" name="waste_bags_per_week" min="0"
+                                    max="50" step="0.5"
+                                    value="{{ active_entry.inputs.waste_bags_per_week | default(2.0, true) }}">
                             </div>
                             <div class="form-group">
                                 <label for="recycling_habit">Recycling Habit</label>
                                 <select id="recycling_habit" name="recycling_habit">
-                                    <option value="strictly" {% if active_entry.inputs.recycling_habit == 'strictly' %}selected{% endif %}>Strictly (Paper, Metal, Plastic, Glass)</option>
-                                    <option value="regularly" {% if active_entry.inputs.recycling_habit == 'regularly' or not active_entry.inputs.recycling_habit %}selected{% endif %}>Regularly</option>
-                                    <option value="sometimes" {% if active_entry.inputs.recycling_habit == 'sometimes' %}selected{% endif %}>Sometimes / Basic</option>
-                                    <option value="never" {% if active_entry.inputs.recycling_habit == 'never' %}selected{% endif %}>Never</option>
+                                    <option value="strictly" {% if active_entry.inputs.recycling_habit=='strictly'
+                                        %}selected{% endif %}>Strictly (Paper, Metal, Plastic, Glass)</option>
+                                    <option value="regularly" {% if active_entry.inputs.recycling_habit=='regularly' or
+                                        not active_entry.inputs.recycling_habit %}selected{% endif %}>Regularly</option>
+                                    <option value="sometimes" {% if active_entry.inputs.recycling_habit=='sometimes'
+                                        %}selected{% endif %}>Sometimes / Basic</option>
+                                    <option value="never" {% if active_entry.inputs.recycling_habit=='never'
+                                        %}selected{% endif %}>Never</option>
                                 </select>
                             </div>
                             <div class="checkbox-group">
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" id="composting_habit" name="composting_habit" {% if active_entry.inputs.composting_habit %}checked{% endif %}>
+                                    <input type="checkbox" id="composting_habit" name="composting_habit" {% if
+                                        active_entry.inputs.composting_habit %}checked{% endif %}>
                                     <span class="checkmark"></span>
                                     <span class="checkbox-label">I compost organic food scraps.</span>
                                 </label>
@@ -317,7 +370,8 @@
                         <button type="button" class="accordion-header" aria-expanded="false">
                             <div class="acc-title-group">
                                 <div class="acc-icon">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                        stroke-width="2">
                                         <circle cx="12" cy="12" r="1"></circle>
                                         <circle cx="19" cy="12" r="1"></circle>
                                         <circle cx="5" cy="12" r="1"></circle>
@@ -334,24 +388,35 @@
                             <div class="form-group">
                                 <label for="diet_habit">Dietary Profile</label>
                                 <select id="diet_habit" name="diet_habit">
-                                    <option value="meat_heavy" {% if active_entry.inputs.diet_habit == 'meat_heavy' %}selected{% endif %}>Meat-Heavy (Daily red meat)</option>
-                                    <option value="average" {% if active_entry.inputs.diet_habit == 'average' or not active_entry.inputs.diet_habit %}selected{% endif %}>Average Omnivore</option>
-                                    <option value="pescatarian" {% if active_entry.inputs.diet_habit == 'pescatarian' %}selected{% endif %}>Pescatarian</option>
-                                    <option value="vegetarian" {% if active_entry.inputs.diet_habit == 'vegetarian' %}selected{% endif %}>Vegetarian</option>
-                                    <option value="vegan" {% if active_entry.inputs.diet_habit == 'vegan' %}selected{% endif %}>Plant-based / Vegan</option>
+                                    <option value="meat_heavy" {% if active_entry.inputs.diet_habit=='meat_heavy'
+                                        %}selected{% endif %}>Meat-Heavy (Daily red meat)</option>
+                                    <option value="average" {% if active_entry.inputs.diet_habit=='average' or not
+                                        active_entry.inputs.diet_habit %}selected{% endif %}>Average Omnivore</option>
+                                    <option value="pescatarian" {% if active_entry.inputs.diet_habit=='pescatarian'
+                                        %}selected{% endif %}>Pescatarian</option>
+                                    <option value="vegetarian" {% if active_entry.inputs.diet_habit=='vegetarian'
+                                        %}selected{% endif %}>Vegetarian</option>
+                                    <option value="vegan" {% if active_entry.inputs.diet_habit=='vegan' %}selected{%
+                                        endif %}>Plant-based / Vegan</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="shopping_habit">Goods & Clothing Purchases</label>
                                 <select id="shopping_habit" name="shopping_habit">
-                                    <option value="minimalist" {% if active_entry.inputs.shopping_habit == 'minimalist' %}selected{% endif %}>Minimalist (Only essentials)</option>
-                                    <option value="average" {% if active_entry.inputs.shopping_habit == 'average' or not active_entry.inputs.shopping_habit %}selected{% endif %}>Average Consumer</option>
-                                    <option value="frequent_shopper" {% if active_entry.inputs.shopping_habit == 'frequent_shopper' %}selected{% endif %}>Frequent Shopper</option>
+                                    <option value="minimalist" {% if active_entry.inputs.shopping_habit=='minimalist'
+                                        %}selected{% endif %}>Minimalist (Only essentials)</option>
+                                    <option value="average" {% if active_entry.inputs.shopping_habit=='average' or not
+                                        active_entry.inputs.shopping_habit %}selected{% endif %}>Average Consumer
+                                    </option>
+                                    <option value="frequent_shopper" {% if
+                                        active_entry.inputs.shopping_habit=='frequent_shopper' %}selected{% endif %}>
+                                        Frequent Shopper</option>
                                 </select>
                             </div>
                             <div class="checkbox-group">
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" id="reusable_habit" name="reusable_habit" {% if active_entry.inputs.reusable_habit %}checked{% endif %}>
+                                    <input type="checkbox" id="reusable_habit" name="reusable_habit" {% if
+                                        active_entry.inputs.reusable_habit %}checked{% endif %}>
                                     <span class="checkmark"></span>
                                     <span class="checkbox-label">Consistently use reusable bags, bottles & cups.</span>
                                 </label>
@@ -368,7 +433,8 @@
             <div id="recommendations-panel-view" class="metrics-view-section" style="display: none;">
                 <div class="recs-header">
                     <span class="recs-badge">Actionable Insights</span>
-                    <p class="recs-desc">Practical steps tailored to your recorded metrics to lower carbon emissions.</p>
+                    <p class="recs-desc">Practical steps tailored to your recorded metrics to lower carbon emissions.
+                    </p>
                 </div>
                 <div class="recs-list" id="recommendations-container">
                     {% for rec in active_entry.calculations.recommendations %}
@@ -387,8 +453,10 @@
             <!-- Bottom Pill Switch: Manual vs Echo -->
             <div class="metrics-bottom-bar">
                 <div class="pill-switch-container">
-                    <button type="button" class="pill-switch-btn active" id="pill-manual" aria-label="Manual form view">Manual</button>
-                    <button type="button" class="pill-switch-btn" id="pill-echo" aria-label="Echo sustainability recommendations view">Echo &#x2728;</button>
+                    <button type="button" class="pill-switch-btn active" id="pill-manual"
+                        aria-label="Manual form view">Manual</button>
+                    <button type="button" class="pill-switch-btn" id="pill-echo"
+                        aria-label="Echo sustainability recommendations view">Echo &#x2728;</button>
                 </div>
             </div>
         </div>
@@ -401,25 +469,30 @@
 
             <div class="entries-list" id="entries-list">
                 {% if entries %}
-                    {% for entry in entries %}
-                    <div class="entry-row {% if active_entry.id == entry.id %}active{% endif %}" data-entry-id="{{ entry.id }}" id="entry-row-{{ entry.id }}">
-                        <button type="button" class="entry-select-btn" onclick="loadEntry({{ entry.id }})" aria-label="Load {{ entry.title }}">
-                            <span class="entry-name">{{ entry.title }}</span>
-                        </button>
-                        <button type="button" class="entry-delete-btn" onclick="confirmDeleteEntry({{ entry.id }}, '{{ entry.title }}')" title="Delete {{ entry.title }}" aria-label="Delete {{ entry.title }}">&times;</button>
-                    </div>
-                    {% endfor %}
+                {% for entry in entries %}
+                <div class="entry-row {% if active_entry.id == entry.id %}active{% endif %}"
+                    data-entry-id="{{ entry.id }}" id="entry-row-{{ entry.id }}">
+                    <button type="button" class="entry-select-btn" onclick="loadEntry({{ entry.id }})"
+                        aria-label="Load {{ entry.title }}">
+                        <span class="entry-name">{{ entry.title }}</span>
+                    </button>
+                    <button type="button" class="entry-delete-btn"
+                        onclick="confirmDeleteEntry({{ entry.id }}, '{{ entry.title }}')"
+                        title="Delete {{ entry.title }}" aria-label="Delete {{ entry.title }}">&times;</button>
+                </div>
+                {% endfor %}
                 {% else %}
-                    <div class="entry-row active" id="entry-row-fresh">
-                        <button type="button" class="entry-select-btn">
-                            <span class="entry-name">Log #1</span>
-                        </button>
-                    </div>
+                <div class="entry-row active" id="entry-row-fresh">
+                    <button type="button" class="entry-select-btn">
+                        <span class="entry-name">Log #1</span>
+                    </button>
+                </div>
                 {% endif %}
             </div>
 
             <div class="entries-footer">
-                <button type="button" class="btn-new-log" id="btn-new-log" title="Create new assessment log" aria-label="Create new assessment log">+</button>
+                <button type="button" class="btn-new-log" id="btn-new-log" title="Create new assessment log"
+                    aria-label="Create new assessment log">+</button>
             </div>
         </div>
     </aside>
