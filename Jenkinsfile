@@ -63,7 +63,7 @@ pipeline {
                 echo "==> [Stage 3/8] Running pytest test suite and input validation..."
                 sh '''
                     . venv/bin/activate
-                    pytest --junitxml=pytest-results.xml
+                    PYTHONPATH="$WORKSPACE" python -m pytest --junitxml=pytest-results.xml
                 '''
             }
             post {
